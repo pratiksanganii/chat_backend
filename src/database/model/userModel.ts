@@ -1,5 +1,5 @@
-import { Model, Schema } from "mongoose";
-import { commonModel } from "./dbHelp";
+import { Model, Schema } from 'mongoose';
+import { commonModel } from './dbHelp';
 
 const userSchema = new Schema({
   name: commonModel.string(),
@@ -8,5 +8,5 @@ const userSchema = new Schema({
   jwtToken: commonModel.string(false), // not required
   lastLogin: { type: Date, required: false },
 });
-const User = new Model("User", userSchema);
+const User = new Model('User', userSchema);
 export default User;
