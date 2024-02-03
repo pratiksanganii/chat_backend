@@ -19,3 +19,8 @@ export function errorHandler(
   } catch (e) {}
   return res.json({ err });
 }
+
+export function notFoundHandler(req: Request, res: Response) {
+  res.statusCode = 404;
+  return res.json({ message: 'Not Found.' });
+}
