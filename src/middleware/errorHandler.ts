@@ -16,7 +16,9 @@ export function errorHandler(
     if (parsed.message) message = parsed.message;
     res.statusCode = statusCode;
     return res.json({ message });
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
   return res.json({ err });
 }
 

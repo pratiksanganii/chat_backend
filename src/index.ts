@@ -1,7 +1,6 @@
 import { config } from 'dotenv';
 import { connectDB } from './database/db';
 import express, { Express, Request, Response } from 'express';
-import { login, signUp } from './controller/userController';
 import userRouter from './routes/userRoutes';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import cors from 'cors';
@@ -17,8 +16,6 @@ async function startApp() {
   });
   app.use(express.json());
 
-  app.post('/login', login);
-  app.post('/signup', signUp);
   app.use('/user', userRouter);
   app.use(errorHandler);
   app.use(notFoundHandler);
