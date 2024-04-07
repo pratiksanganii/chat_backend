@@ -24,7 +24,9 @@ export async function signUp(req: Request, res: Response, next: NextFunction) {
     const payload = await verifyPayload(req.body, TYPE.SIGN_UP);
     const user = new User(payload);
     await user.save();
-    return res.json({ payload, user });
+    delete payload?.password;
+    const token = generateJWT(payload);
+    return res.json({ payload, token });
   } catch (e) {
     next(e);
   }
