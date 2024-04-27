@@ -42,7 +42,7 @@ const encryptMsg = (msg: string) =>
   AES.encrypt(msg.toString(), msgKey).toString();
 
 // decrypt message
-const decryptMsg = (msg: string) => AES.decrypt(msg, msgKey);
+const decryptMsg = (msg: string) => AES.decrypt(msg, msgKey).toString();
 
 export {
   decryptPhone,

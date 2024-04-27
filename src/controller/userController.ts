@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { HTTPError, Regex, passwordNotMatch } from '../helpers/errors';
 import User from '../database/model/userModel';
-import { generateJWT } from '../helpers/cryptService';
+import { generateJWT, verifyJWT } from '../helpers/cryptService';
 
 const TYPE = {
   SIGN_UP: 1,
@@ -14,7 +14,6 @@ export async function login(req: Request, res: Response, next: NextFunction) {
     const token = generateJWT(payload);
     return res.json({ payload, token });
   } catch (e) {
-    console.log({ e });
     next(e);
   }
 }
@@ -79,4 +78,18 @@ async function verifyPayload(
   const userObj: any = user?.toObject();
   delete userObj?.password;
   return userObj;
+}
+
+export async function verifyUser(
+  req: Request | any,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = req.user;
+    const token: string = req.headers.access_token;
+    return res.json({ user, token });
+  } catch (e) {
+    next(e);
+  }
 }

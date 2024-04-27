@@ -18,6 +18,7 @@ interface IUser {
   password: string;
   jwtToken: string;
   lastLogin: Date;
+  socketId: string;
 }
 
 const obj = {
@@ -28,6 +29,7 @@ const obj = {
   password: commonModel.string(),
   jwtToken: commonModel.string(false), // not required
   lastLogin: { type: Date, required: false },
+  socketId: commonModel.string(false),
 };
 const userSchema = new Schema<IUser, {}, IUserMethods>(obj, {
   timestamps: true,

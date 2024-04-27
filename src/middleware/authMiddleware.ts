@@ -12,6 +12,7 @@ export async function verifyToken(
     req.user = user;
     return next();
   } catch (e) {
+    console.log({ e });
     next(e);
   }
 }
